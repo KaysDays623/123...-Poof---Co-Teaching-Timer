@@ -1,0 +1,80 @@
+﻿123... Poof - Co Teaching Timer Privacy Policy 5/18/2026
+
+
+123... Poof - Co Teaching Timer Privacy Policy
+
+
+Effective Date: [5/18/2026]
+
+
+123... Poof - Co Teaching Timer is a Chrome Extension that provides a shared classroom timer overlay. The extension allows users to run a local timer or connect to shared timer rooms using Firebase.
+
+
+Information We Collect and Store
+
+
+123... Poof - Co Teaching Timer stores only the information needed for timer functionality, including:
+
+
+- Timer room codes and display names
+- Timer state, such as running, paused, stopped, selected duration, seconds left, and end time
+- Custom preset timer settings
+- Local extension settings, such as saved room history and panel position
+- An anonymous Firebase Authentication user ID used to support secure syncing
+
+
+Information We Do Not Collect
+
+
+123... Poof - Co Teaching Timer does not collect or store:
+
+
+- Student names
+- Class rosters
+- Learning coach information
+- Meeting links
+- Website content
+- Screenshots
+- Chat messages
+- Browsing history
+- Personal messages or classroom communications
+
+
+How Information Is Used
+
+
+The information stored by 123... Poof - Co Teaching Timer is used only to operate the timer, sync shared timer rooms, remember user preferences, and maintain secure access to Firebase-backed timer data.
+
+
+Data Sharing
+
+
+123... Poof - Co Teaching Timer does not sell user data. Timer room data may be visible to other users who join the same timer room. Users should avoid using student names or sensitive information in room names.
+
+
+Third-Party Services
+
+
+123... Poof - Co Teaching Timer uses Firebase for anonymous authentication and Realtime Database syncing. Firebase is used to store shared timer room information and synchronize timer state between users.
+
+
+User Control
+
+
+Users may use the timer in local mode without joining a shared room. Users may also delete saved local settings by removing the extension or clearing extension storage in Chrome.
+
+
+Children’s Privacy
+
+
+123... Poof - Co Teaching Timer is intended for teacher and staff use. The extension is not designed to collect information from students.
+
+
+Contact
+
+
+For questions about this privacy policy, contact:
+
+
+Kathleen Sheppard
+kathleen.sheppard1@gmail.com

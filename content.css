@@ -1,0 +1,412 @@
+#coteach-timer-panel,
+#coteach-timer-panel * {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+#coteach-timer-panel {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  width: 320px;
+  background: #dff3ff;
+  border: 3px solid #1f3650;
+  border-radius: 18px;
+  padding: 14px;
+  z-index: 999999;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  transition: width 0.2s ease;
+}
+
+/* Header */
+
+#coteach-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+  min-height: 44px;
+  cursor: grab;
+  user-select: none;
+}
+
+#coteach-timer-panel.dragging #coteach-header {
+  cursor: grabbing;
+}
+
+#coteach-title-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-left: 4px;
+  padding-top: 0;
+  min-height: 44px;
+}
+
+#coteach-title {
+  color: #1f3650;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  line-height: 1.05;
+}
+
+#coteach-room-status {
+  margin-top: 4px;
+  min-height: 16px;
+  color: #1f3650;
+  font-size: 12px;
+  font-weight: 700;
+  opacity: 0.75;
+  line-height: 1.1;
+}
+
+#coteach-room-status:empty {
+  visibility: hidden;
+}
+
+#coteach-header-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+#coteach-settings-btn,
+#coteach-close-btn {
+  width: 34px;
+  height: 34px;
+  border: 3px solid #1f3650;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #1f3650;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  flex: 0 0 auto;
+}
+
+#coteach-close-btn {
+  font-size: 20px;
+}
+
+/* Timer display */
+
+#coteach-display {
+  background: #ffffff;
+  border: 3px solid #1f3650;
+  border-radius: 16px;
+  min-height: 92px;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+#coteach-time {
+  font-size: 38px;
+  font-weight: 800;
+  color: #1f3650;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+#coteach-label {
+  font-size: 15px;
+  color: #1f3650;
+  text-align: center;
+}
+
+/* Main timer controls */
+
+#coteach-expanded-controls {
+  display: block;
+}
+
+#coteach-preset-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+#coteach-custom-time {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+#coteach-custom-time input,
+.preset-setting-row input {
+  width: 100%;
+  min-width: 0;
+  border: 3px solid #1f3650;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #1f3650;
+  padding: 13px 12px;
+  font-size: 16px;
+  text-align: center;
+  min-height: 54px;
+}
+
+#coteach-custom-time input:focus,
+.preset-setting-row input:focus,
+#coteach-timer-panel button:focus {
+  outline: 3px solid rgba(31, 54, 80, 0.35);
+  outline-offset: 2px;
+}
+
+#coteach-main-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+#coteach-timer-panel button {
+  border: 3px solid #1f3650;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #1f3650;
+  padding: 12px 10px;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  min-height: 54px;
+}
+
+#coteach-timer-panel button:hover:not(:disabled) {
+  background: #f3fbff;
+}
+
+#coteach-timer-panel button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.hidden,
+#pause-btn.hidden {
+  display: none !important;
+}
+
+/* Compact mode */
+
+#coteach-timer-panel.compressed {
+  width: 290px;
+}
+
+#coteach-timer-panel.compressed #coteach-expanded-controls {
+  display: none;
+}
+
+#coteach-timer-panel.compressed #coteach-display {
+  min-height: 86px;
+  margin-bottom: 12px;
+}
+
+#coteach-timer-panel.compressed #coteach-time {
+  font-size: 40px;
+  margin-bottom: 4px;
+}
+
+#coteach-timer-panel.compressed #coteach-label {
+  font-size: 14px;
+}
+
+#coteach-timer-panel.compressed #coteach-main-controls {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+#coteach-timer-panel:has(#coteach-settings-view:not(.hidden)) {
+  width: 390px;
+}
+
+/* Settings view */
+
+
+#coteach-settings-view {
+  background: #ffffff;
+  border: 3px solid #1f3650;
+  border-radius: 16px;
+  padding: 12px;
+  max-height: 72vh;
+  overflow-y: auto;
+}
+
+#settings-title {
+  color: #1f3650;
+  font-size: 18px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+#settings-help {
+  margin: 0 0 8px;
+  color: #1f3650;
+  font-size: 13px;
+  text-align: center;
+}
+
+.preset-setting-row {
+  display: grid;
+  grid-template-columns: 70px 1fr 1fr;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.preset-setting-row label {
+  color: #1f3650;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.preset-setting-row input {
+  min-height: 38px;
+  padding: 6px;
+  font-size: 14px;
+}
+
+#settings-status {
+  min-height: 16px;
+  margin: 4px 0 8px;
+  color: #1f3650;
+  font-size: 12px;
+  text-align: center;
+  font-weight: 700;
+}
+
+#settings-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+#settings-buttons button {
+  min-height: 42px;
+  padding: 8px 6px;
+  font-size: 14px;
+}
+
+/* Make settings view fit better on smaller screens */
+
+#coteach-timer-panel:has(#coteach-settings-view:not(.hidden)) {
+  width: 390px;
+}
+
+#settings-title {
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+#settings-help {
+  margin: 0 0 8px;
+  font-size: 13px;
+}
+
+.preset-setting-row {
+  grid-template-columns: 70px 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 7px;
+}
+
+.preset-setting-row label {
+  font-size: 13px;
+}
+
+.preset-setting-row input {
+  min-height: 38px;
+  padding: 6px;
+  font-size: 14px;
+}
+
+#settings-status {
+  min-height: 16px;
+  margin: 4px 0 8px;
+  font-size: 12px;
+}
+
+#settings-buttons {
+  gap: 8px;
+}
+
+#settings-buttons button {
+  min-height: 42px;
+  padding: 8px 6px;
+  font-size: 14px;
+}
+
+/* Room settings controls */
+
+#room-settings-title {
+  color: #1f3650;
+  font-size: 16px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+#room-settings-help {
+  margin: 0 0 8px;
+  color: #1f3650;
+  font-size: 12px;
+  text-align: center;
+}
+
+#room-choice-select,
+#room-code-input {
+  width: 100%;
+  border: 3px solid #1f3650;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #1f3650;
+  padding: 8px 10px;
+  font-size: 13px;
+  margin-bottom: 8px;
+  min-height: 38px;
+}
+
+#room-choice-select:focus,
+#room-code-input:focus {
+  outline: 3px solid rgba(31, 54, 80, 0.35);
+  outline-offset: 2px;
+}
+
+/* Make Forget / Create / Local buttons match perfectly */
+
+#room-buttons {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+#room-buttons button {
+  flex: 1 1 0;
+  width: 100%;
+  min-width: 0;
+  min-height: 54px;
+  margin: 0;
+  padding: 10px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.1;
+}
+
+#apply-room-btn {
+  width: 100%;
+  min-height: 38px;
+  margin-top: 8px;
+  padding: 8px 6px;
+  font-size: 12px;
+}
+
